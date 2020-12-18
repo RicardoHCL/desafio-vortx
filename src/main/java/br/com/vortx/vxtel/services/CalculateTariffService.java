@@ -23,14 +23,14 @@ public class CalculateTariffService {
 
 	public ResponseDTO calculateTariffs(RequestDTO request) {
 
-		Optional<Tariff> tariff = getFixedTariff(request.getOrigin(), request.getDestiny());
-		tariff.orElseThrow(() -> new InvalidDataException(GenericConstants.DDD_NOT_FOUND_ERROR));
-
-		Double minutes = Math.ceil(request.getMinutes());
-		
 		if(!isPlanValid(request.getPlan())) {
 			throw new InvalidDataException(GenericConstants.INVALID_PLAN_ERROR); 
 		}
+		
+		Optional<Tariff> tariff = getFixedTariff(request.getOrigin(), request.getDestiny());
+		tariff.orElseThrow(() -> new InvalidDataException(GenericConstants.DDD_NOT_FOUND_ERROR));
+
+		Double minutes = Math.ceil(request.getMinutes());	
 
 		BigDecimal valueWithPlan = calculateValueTariffWithTalkMore(tariff.get().getValue(), minutes,
 				request.getPlan());
