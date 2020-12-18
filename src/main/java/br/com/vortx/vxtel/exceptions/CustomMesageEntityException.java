@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.vortx.vxtel.utils.Utils;
+
 @RestController
 @ControllerAdvice
 public class CustomMesageEntityException extends ResponseEntityExceptionHandler {
@@ -17,7 +19,7 @@ public class CustomMesageEntityException extends ResponseEntityExceptionHandler 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionResponse> rendersExceptions(Exception ex, WebRequest request) {
 
-		ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), ex.getMessage(),
+		ExceptionResponse exceptionResponse = new ExceptionResponse(Utils.getStringWithLocalDateTimeNow(), ex.getMessage(),
 				request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -25,7 +27,7 @@ public class CustomMesageEntityException extends ResponseEntityExceptionHandler 
 	@ExceptionHandler(InvalidDataException.class)
 	public final ResponseEntity<ExceptionResponse> rendersInvalidDataException(Exception ex, WebRequest request) {
 
-		ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), ex.getMessage(),
+		ExceptionResponse exceptionResponse = new ExceptionResponse(Utils.getStringWithLocalDateTimeNow(), ex.getMessage(),
 				request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
