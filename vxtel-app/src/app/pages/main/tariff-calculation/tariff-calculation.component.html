@@ -1,0 +1,88 @@
+<nav class="mb-5">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink='/'>Inicio</a></li>
+    <li class="breadcrumb-item active">Calcular Tarifa</li>
+  </ol>
+</nav>
+
+ <div class="row mb-5">
+   <div class="col-md">
+     <h1 class="h2 border-left pl-2">
+       Calcular Tarifa
+     </h1>
+   </div>
+   <div class="col-md">
+     <a routerLink='/' class="btn btn-light float-right">Voltar</a>
+   </div>
+ </div>
+
+ <form [formGroup]= "tariffForm" (submit)="submitForm()" >
+  <div class="card">
+    <div class="card-header">
+     Calcule os valores das ligações
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="origin" >DDD de Origem</label>
+          <input type="number" class="form-control text-center" id="origin" formControlName="origin">
+          <div class="text-danger" *ngIf="tariffForm.get('origin').invalid && tariffForm.get('origin').touched">
+            <div *ngIf="tariffForm.get('origin').errors.required"> Campo obrigatório</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="destiny" >DDD de Destino</label>
+          <input type="number" class="form-control text-center" id="destiny" formControlName="destiny">
+          <div class="text-danger" *ngIf="tariffForm.get('destiny').invalid && tariffForm.get('destiny').touched">
+            <div *ngIf="tariffForm.get('destiny').errors.required"> Campo obrigatório</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="minutes" >Minutos</label>
+          <input type="number" class="form-control text-center" id="minutes" formControlName="minutes">
+          <div class="text-danger" *ngIf="tariffForm.get('minutes').invalid && tariffForm.get('minutes').touched">
+            <div *ngIf="tariffForm.get('minutes').errors.required"> Campo obrigatório</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="plan" >Plano</label>
+          <select id="plan" formControlName="plan" class="form-control">
+            <option value="" disabled selected hidden >Selecione o plano</option>
+            <option value="30">FaleMais 30</option>
+            <option value="60">FaleMais 60</option>
+            <option value="120">FaleMais 120</option>
+          </select>
+          <div class="text-danger" *ngIf="tariffForm.get('plan').invalid && tariffForm.get('plan').touched">
+            <div *ngIf="tariffForm.get('plan').errors.required"> Campo obrigatório</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row justify-content-center">
+        <div class="col-md-3">
+          <button [disabled]="submittingForm || tariffForm.invalid" class="btn btn-primary btn-lg btn-block mt-3">Calcular</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ </form>
+
+ <div class="card-deck mt-5 mb-5" *ngIf="showCards" >
+  <div class="card text-center text-white bg-blue ">
+    <div class="card-header">Valor com o plano: <strong>FaleMais {{planValue}}</strong> </div>
+    <div class="card-body">
+      <h3 class="card-title">{{valueWithPlan}}</h3>
+    </div>
+  </div>
+
+  <div class="card text-center text-white bg-blue ">
+    <div class="card-header">Valor sem o plano</div>
+    <div class="card-body">
+      <h3 class="card-title">{{valueWithoutPlan}}</h3>
+    </div>
+  </div>
+</div>
+
+
