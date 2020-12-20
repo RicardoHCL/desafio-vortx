@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import currencyFormatter from "currency-formatter";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Request } from './../shared/request.model';
 import { ApiService } from './../shared/api.service';
