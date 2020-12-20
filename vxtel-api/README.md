@@ -5,7 +5,7 @@ Api desenvolvida em Java 1.8 e com Spring Boot 2.4.1
 ## Iniciando a Api
 
 1. Importar o projeto no eclipse ou intelli j;
-2. Executar a classe [Application.java];
+2. Executar a classe `Application.java`;
 
 ## Usando a Api
 
@@ -34,7 +34,7 @@ Api desenvolvida em Java 1.8 e com Spring Boot 2.4.1
 
 ## Testando a Api
 
-Executar as classes de testes [CalculateTariffServiceTests.java] e [CalculateTariffControllerTests.java] com o JUnit Test
+Executar as classes de testes `CalculateTariffServiceTests.java` e `CalculateTariffControllerTests.java` com o JUnit Test
 
 ## Contatos
 
